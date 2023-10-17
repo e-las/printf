@@ -14,7 +14,7 @@
 int handle_print(const char *fmt, int *ind, va_list arg_list, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int k, unknow_len = 0, printed_chars = -1;
+	int i, unknow_len = 0, printed_chars = -1;
 	fmt_t fmt_types[] = {
 		{'c', print_char}, {'s', print_string}, {'%', print_percent},
 		{'k', print_int}, {'d', print_int}, {'b', print_binary},
@@ -22,10 +22,10 @@ int handle_print(const char *fmt, int *ind, va_list arg_list, char buffer[],
 		{'X', print_hexa_upper}, {'p', print_pointer}, {'S', print_non_printable},
 		{'r', print_reverse}, {'R', print_rot13string}, {'\0', NULL}
 	};
-	for (k = 0; fmt_types[k].fmt != '\0'; k++)
-		if (fmt[*ind] == fmt_types[k].fmt)
-			return (fmt_types[k].fn(arg_list, buffer, flags, width, precision, size));
-	if (fmt_types[k].fmt == '\0')
+	for (i = 0; fmt_types[i].fmt != '\0'; i++)
+		if (fmt[*ind] == fmt_types[i].fmt)
+			return (fmt_types[i].fn(arg_list, buffer, flags, width, precision, size));
+	if (fmt_types[i].fmt == '\0')
 	{
 		if (fmt[*ind] == '\0')
 			return (-1);

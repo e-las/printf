@@ -18,21 +18,21 @@
 int print_unsigned(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int k = BUFF_SIZE - 2;
+	int i = BUFF_SIZE - 2;
 	unsigned long int numba = va_arg(types, unsigned long int);
 
 	numba = convert_size_unsgnd(numba, size);
 
 	if (numba == 0)
-		buffer[k--] = '0';
+		buffer[i--] = '0';
 	buffer[BUFF_SIZE - 1] = '\0';
 	while (numba > 0)
 	{
-		buffer[k--] = (numba % 10) + '0';
+		buffer[i--] = (numba % 10) + '0';
 		numba /= 10;
 	}
-	k++;
-	return (write_unsgnd(0, k, buffer, flags, width, precision, size));
+	i++;
+	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }
 
 /**A program that print unsigned number in OCTAL**/
@@ -49,24 +49,24 @@ int print_unsigned(va_list types, char buffer[],
 int print_octal(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int k = BUFF_SIZE - 2;
+	int i = BUFF_SIZE - 2;
 	unsigned long int numba = va_arg(types, unsigned long int);
 	unsigned long int init_numba = numba;
 
 	UNUSED(width);
 	numba = convert_size_unsgnd(numba, size);
 	if (numba == 0)
-		buffer[k--] = '0';
+		buffer[i--] = '0';
 	buffer[BUFF_SIZE - 1] = '\0';
 	while (numba > 0)
 	{
-		buffer[k--] = (numba % 8) + '0';
+		buffer[i--] = (numba % 8) + '0';
 		numba /= 8;
 	}
 	if (flags & F_HASH && init_numba != 0)
-		buffer[k--] = '0';
-	k++;
-	return (write_unsgnd(0, k, buffer, flags, width, precision, size));
+		buffer[i--] = '0';
+	i++;
+	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }
 
 /**A program that print unsigned number in HEX**/
@@ -121,25 +121,25 @@ int print_hexa_upper(va_list types, char buffer[],
 int print_hexa(va_list types, char map_to[], char buffer[],
 	int flags, char flag_ch, int width, int precision, int size)
 {
-	int k = BUFF_SIZE - 2;
+	int i = BUFF_SIZE - 2;
 	unsigned long int numba = va_arg(types, unsigned long int);
 	unsigned long int init_numba = numba;
 
 	UNUSED(width);
 	numba = convert_size_unsgnd(numba, size);
 	if (numba == 0)
-		buffer[k--] = '0';
+		buffer[i--] = '0';
 	buffer[BUFF_SIZE - 1] = '\0';
 	while (numba > 0)
 	{
-		buffer[k--] = map_to[numba % 16];
+		buffer[i--] = map_to[numba % 16];
 		numba /= 16;
 	}
 	if (flags & F_HASH && init_numba != 0)
 	{
-		buffer[k--] = flag_ch;
-		buffer[k--] = '0';
+		buffer[i--] = flag_ch;
+		buffer[i--] = '0';
 	}
-	k++;
-	return (write_unsgnd(0, k, buffer, flags, width, precision, size));
+	i++;
+	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }

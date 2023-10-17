@@ -42,7 +42,7 @@ int print_pointer(va_list types, char buffer[],
 	else if (flags & F_SPACE)
 		extra_c = ' ', length++;
 	ind++;
-	/*return (write(1, &buffer[k], BUFF_SIZE - k - 1));*/
+	/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
 	return (write_pointer(buffer, ind, length,
 		width, flags, padd, extra_c, padd_start));
 }
@@ -61,7 +61,7 @@ int print_pointer(va_list types, char buffer[],
 int print_non_printable(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int k = 0, offset = 0;
+	int i = 0, offset = 0;
 	char *str = va_arg(types, char *);
 
 	UNUSED(flags);
@@ -70,16 +70,16 @@ int print_non_printable(va_list types, char buffer[],
 	UNUSED(size);
 	if (str == NULL)
 		return (write(1, "(null)", 6));
-	while (str[k] != '\0')
+	while (str[i] != '\0')
 	{
-		if (is_printable(str[k]))
-			buffer[k + offset] = str[k];
+		if (is_printable(str[i]))
+			buffer[i + offset] = str[i];
 		else
-			offset += append_hexa_code(str[k], buffer, k + offset);
-		k++;
+			offset += append_hexa_code(str[i], buffer, i + offset);
+		i++;
 	}
-	buffer[k + offset] = '\0';
-	return (write(1, buffer, k + offset));
+	buffer[i + offset] = '\0';
+	return (write(1, buffer, i + offset));
 }
 
 /** A program print reverse**/
@@ -98,7 +98,7 @@ int print_reverse(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	char *str;
-	int k, count = 0;
+	int i, count = 0;
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -111,17 +111,17 @@ int print_reverse(va_list types, char buffer[],
 		UNUSED(precision);
 		str = ")Null(";
 	}
-	for (k = 0; str[k]; k++)
+	for (i = 0; str[i]; i++)
 		;
-	for (k = k - 1; k >= 0; k--)
+	for (i = i - 1; i >= 0; i--)
 	{
-		char z = str[k];
+		char z = str[i];
 
 		write(1, &z, 1);
 
 		count++;
 	}
-												return (count);
+	return (count);
 }
 
 /**A program that print a string in ROT13**/
@@ -138,9 +138,9 @@ int print_reverse(va_list types, char buffer[],
 int print_rot13string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	char e;
+	char x;
 	char *str;
-	unsigned int k, y;
+	unsigned int i, y;
 	int count = 0;
 	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
@@ -153,22 +153,22 @@ int print_rot13string(va_list types, char buffer[],
 	UNUSED(size);
 	if (str == NULL)
 		str = "(AHYY)";
-	for (k = 0; str[k]; k++)
+	for (i = 0; str[i]; i++)
 	{
 		for (y = 0; in[y]; y++)
 		{
-			if (in[y] == str[k])
+			if (in[y] == str[i])
 			{
-				e = out[y];
-				write(1, &e, 1);
+				x = out[y];
+				write(1, &x, 1);
 				count++;
 				break;
 			}
 		}
 		if (!in[y])
 		{
-			e = str[k];
-			write(1, &e, 1);
+			x = str[i];
+			write(1, &x, 1);
 			count++;
 		}
 	}

@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdio.h>
-#define define BUFF_SIZE 1024
+#define BUFF_SIZE 1024
 
 /**A program that print char**/
 /**Developer: e-las**/
@@ -37,7 +37,7 @@ int print_char(va_list types, char buffer[],
 int print_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int length = 0, k;
+	int length = 0, i;
 	char *str = va_arg(types, char *);
 
 	UNUSED(buffer);
@@ -60,13 +60,13 @@ int print_string(va_list types, char buffer[],
 		if (flags & F_MINUS)
 		{
 			write(1, &str[0], length);
-			for (k = width - length; k > 0; k--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
 		}
 		else
 		{
-			for (k = width - length; k > 0; k--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			write(1, &str[0], length);
 			return (width);
@@ -106,20 +106,21 @@ int print_percent(va_list types, char buffer[],
  * @width: specify the min width of output field
  * @precision: control the num decimal specification
  * @size: Size specifier
+ * @BUFF_SIZE: buff specifier size
  * Return: Number of chars printed
  */
 #define BUFF_SIZE 1024
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int k = BUFF_SIZE - 2;
+	int i = BUFF_SIZE - 2;
 	int is_negative = 0;
 	long int w = va_arg(types, long int);
 	unsigned long int numba;
 
 	w = convert_size_number(w, size);
 	if (w == 0)
-		buffer[k--] = '0';
+		buffer[i--] = '0';
 	buffer[BUFF_SIZE - 1] = '\0';
 	numba = (unsigned long int)w;
 	if (w < 0)
@@ -129,11 +130,11 @@ int print_int(va_list types, char buffer[],
 	}
 	while (numba > 0)
 	{
-		buffer[k--] = (numba % 10) + '0';
+		buffer[i--] = (numba % 10) + '0';
 		numba /= 10;
 	}
-	k++;
-	return (write_number(is_negative, k, buffer, flags, width, precision, size));
+	i++;
+	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
 /**A program that print binary**/
@@ -150,7 +151,7 @@ int print_int(va_list types, char buffer[],
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	unsigned int w, u, k, sum;
+	unsigned int w, u, i, sum;
 	unsigned int a[32];
 	int count;
 
@@ -163,17 +164,17 @@ int print_binary(va_list types, char buffer[],
 	w = va_arg(types, unsigned int);
 	u = 2147483648; /* (2 ^ 31) */
 	a[0] = w / u;
-	for (k = 1; k < 32; k++)
+	for (i = 1; i < 32; i++)
 	{
 		u /= 2;
-		a[k] = (w / u) % 2;
+		a[i] = (w / u) % 2;
 	}
-	for (k = 0, sum = 0, count = 0; k < 32; k++)
+	for (i = 0, sum = 0, count = 0; i < 32; i++)
 	{
-		sum += a[k];
-		if (sum || k == 31)
+		sum += a[i];
+		if (sum || i == 31)
 		{
-			char z = '0' + a[k];
+			char z = '0' + a[i];
 
 			write(1, &z, 1);
 			count++;
