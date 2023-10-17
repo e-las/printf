@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+#define BUFF_SIZE 1024
 
 /**A program that print a pointer**/
 /**Developer: e-las**/
@@ -12,7 +14,6 @@
  * @size: Size specifier
  * Return: Number of chars printed
  */
-#define BUFF_SIZE 1024
 int print_pointer(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {

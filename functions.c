@@ -106,10 +106,9 @@ int print_percent(va_list types, char buffer[],
  * @width: specify the min width of output field
  * @precision: control the num decimal specification
  * @size: Size specifier
- * @BUFF_SIZE: buff specifier size
  * Return: Number of chars printed
  */
-#define BUFF_SIZE 1024
+
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
