@@ -39,7 +39,7 @@ typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
-	       	va_list arg_list, char buffer[], int flags, int width, int precision, int size);
+	va_list arg_list, char buffer[], int flags, int width,int precision, int size);
 
 
 int print_char(va_list types, char buffer[],
@@ -110,5 +110,4 @@ int is_digit(char);
 long int convert_size_number(long int numba, int size);
 long int convert_size_unsgnd(unsigned long int numba, int size);
 
-#endif 
-
+#endif
