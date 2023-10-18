@@ -1,9 +1,13 @@
 #include "main.h"
-#include <stdio.h>
-#define BUFF_SIZE 1024
+/**
+ *#include <stdio.h>
+ *#define BUFF_SIZE 1024
+ */
 
 /**A program that print unsigned number**/
-/**Developer: e-las**/
+/**Developer: e-las
+ * Debugger: JayOaks
+ **/
 
 /**
  * print_unsigned - A program that prints an unsigned number
