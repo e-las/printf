@@ -1,18 +1,15 @@
 #include "main.h"
-#include <stdio.h>
-#define BUFF_SIZE 1024
 
-/**A program that print a pointer**/
-/**Developer: e-las**/
+/****************** PRINT POINTER ******************/
 /**
- * print_pointer - A program that Prints the value of a pointer variable
+ * print_pointer - Prints the value of a pointer variable
  * @types: List a of arguments
- * @buffer: Reduce the number of write operations to output
- * @flags: control alignment and representation of the output
- * @width: specify the min width of output field
- * @precision: control the num decimal specification
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width
+ * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of chars printed
+ * Return: Number of chars printed.
  */
 int print_pointer(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
