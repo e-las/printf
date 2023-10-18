@@ -7,7 +7,7 @@
  */
 
 /**
- * print_unsigned - A program that prints an unsigned number
+ * print_unsigned - prints an unsigned number
  * @types: List a of arguments
  * @buffer: Reduce the number of write operations to output
  * @flags: control alignment and representation of the output

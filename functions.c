@@ -7,7 +7,7 @@
  */
 
 /**
- * print_char - Program that Prints a char
+ * print_char - prints a char
  * @types: List a of arguments
  * @buffer: Reduce the number of write operations to output
  * @flags: control alignment and representation of the output
