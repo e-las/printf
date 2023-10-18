@@ -1,18 +1,14 @@
 #include "main.h"
 
-/**A program that print char**/
-/**
- * Developer: e-las
- * Debugger: JayOaks
- */
+/************************* PRINT CHAR *************************/
 
 /**
- * print_char - prints a char
+ * print_char - Prints a char
  * @types: List a of arguments
- * @buffer: Reduce the number of write operations to output
- * @flags: control alignment and representation of the output
- * @width: specify the min width of output field
- * @precision: control the num decimal specification
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: Width
+ * @precision: Precision specification
  * @size: Size specifier
  * Return: Number of chars printed
  */

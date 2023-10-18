@@ -1,20 +1,16 @@
 #include "main.h"
 
-/**A program that print unsigned number**/
-/**
- * Developer: e-las
- * Debugger: JayOaks
- */
+/************************* PRINT UNSIGNED NUMBER *************************/
 
 /**
- * print_unsigned - prints an unsigned number
+ * print_unsigned - Prints an unsigned number
  * @types: List a of arguments
- * @buffer: Reduce the number of write operations to output
- * @flags: control alignment and representation of the output
- * @width: specify the min width of output field
- * @precision: control the num decimal specification
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width
+ * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of chars printed
+ * Return: Number of chars printed.
  */
 int print_unsigned(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
