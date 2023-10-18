@@ -10,6 +10,9 @@ void print_buffer(char buffer[], int *buff_ind);
  * _printf - A Printf function
  * @format: format.
  * Return: Printed chars.
+ * print_buffer - A program Prints contents of buffer if it exist
+ * @buffer: Array of chars
+ * @buff_ind: Index at which to add next char, represents the length.
  */
 int _printf(const char *format, ...)
 {
